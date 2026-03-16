@@ -1,0 +1,34 @@
+# Build artifacts
+target/
+*.pdb
+
+# Environment files
+.env
+.env.*
+!.env.vault
+!.env.example
+.env.keys
+
+# Vault encrypted data
+.envsafe/vault.enc
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Node
+node_modules/
+
+# Demo recordings (keep gifs)
+demo/*.cast
+
+# Claude Code
+.claude/

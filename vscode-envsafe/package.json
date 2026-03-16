@@ -1,0 +1,45 @@
+{
+  "name": "vscode-envsafe",
+  "displayName": "EnvSafe",
+  "description": "Manage encrypted environment variables directly from VS Code",
+  "version": "0.1.0",
+  "publisher": "envsafe",
+  "engines": { "vscode": "^1.85.0" },
+  "categories": ["Other"],
+  "activationEvents": ["workspaceContains:.envsafe/config.json"],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [{
+        "id": "envsafe",
+        "title": "EnvSafe",
+        "icon": "resources/icon.svg"
+      }]
+    },
+    "views": {
+      "envsafe": [{
+        "id": "envsafeVariables",
+        "name": "Environment Variables"
+      }]
+    },
+    "commands": [
+      { "command": "envsafe.refresh", "title": "EnvSafe: Refresh Variables" },
+      { "command": "envsafe.addVariable", "title": "EnvSafe: Add Variable" },
+      { "command": "envsafe.editVariable", "title": "EnvSafe: Edit Variable" },
+      { "command": "envsafe.deleteVariable", "title": "EnvSafe: Delete Variable" },
+      { "command": "envsafe.switchEnv", "title": "EnvSafe: Switch Environment" },
+      { "command": "envsafe.exportDotenv", "title": "EnvSafe: Export as .env" },
+      { "command": "envsafe.scan", "title": "EnvSafe: Scan for Secrets" }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.3.0"
+  }
+}
