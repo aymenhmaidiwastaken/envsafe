@@ -1,0 +1,33 @@
+name: 'EnvSafe - Inject Secrets'
+description: 'Inject secrets from envsafe vault into your CI environment'
+inputs:
+  env:
+    description: 'Environment to load (dev, staging, prod)'
+    required: false
+    default: 'dev'
+  key:
+    description: 'Base64-encoded project key'
+    required: true
+  version:
+    description: 'EnvSafe version to install'
+    required: false
+    default: 'latest'
+runs:
+  using: 'composite'
+  steps:
+    - name: Install envsafe
+      shell: bash
+      run: |
+        VERSION="${{ inputs.version }}"
+        if [ "$VERSION" = "latest" ]; then
+          URL="https://github.com/aymenhmaidiwastaken/envsafe/releases/latest/download/envsafe-x86_64-unknown-linux-gnu"
+        else
+          URL="https://github.com/aymenhmaidiwastaken/envsafe/releases/download/v${VERSION}/envsafe-x86_64-unknown-linux-gnu"
+        fi
+        curl -sSL "$URL" -o /usr/local/bin/envsafe
+        chmod +x /usr/local/bin/envsafe
+    - name: Import key and inject secrets
+      shell: bash
+      run: |
+        envsafe key import "${{ inputs.key }}"
+        envsafe export --env "${{ inputs.env }}" >> $GITHUB_ENV

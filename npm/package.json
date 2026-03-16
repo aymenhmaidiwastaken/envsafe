@@ -1,0 +1,14 @@
+{
+  "name": "envsafe",
+  "version": "0.2.0",
+  "description": "Your secrets, encrypted, everywhere. One tool for all .env management.",
+  "bin": { "envsafe": "bin/envsafe" },
+  "scripts": {
+    "postinstall": "node install.js"
+  },
+  "os": ["darwin", "linux", "win32"],
+  "cpu": ["x64", "arm64"],
+  "license": "MIT",
+  "repository": { "type": "git", "url": "https://github.com/aymenhmaidiwastaken/envsafe" },
+  "keywords": ["env", "secrets", "encryption", "dotenv", "environment"]
+}
